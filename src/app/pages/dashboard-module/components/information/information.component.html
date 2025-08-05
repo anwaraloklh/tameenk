@@ -1,0 +1,62 @@
+<div class="info-center-container">
+    <div class="header">
+      <h2><i nz-icon nzType="message" nzTheme="outline"></i>
+        Information Center
+     </h2>
+      <button nz-button nzType="primary" (click)="openAddModal()">
+        <i nz-icon nzType="plus"></i> إضافة مقال
+      </button>
+    </div>
+  
+    <nz-table
+      [nzData]="articles"
+      [nzBordered]="true"
+      [nzSize]="'middle'"
+      
+    >
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>Decription</th>
+          <th> Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles">
+          <td>{{ article.title }}</td>
+          <td>{{ article.description }}</td>
+          <td>{{ article.date | date:'mediumDate' }}</td>
+          <td>
+            <button nz-button nzType="default" nzSize="small" (click)="editArticle(article)">
+              <i nz-icon nzType="edit"></i> 
+            </button>
+            <i >  |  </i> 
+            <button nz-button nzType="default" nzDanger nzSize="small" (click)="deleteArticle(article)">
+              <i nz-icon nzType="delete"></i> 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  
+    <!-- Modal لإضافة/تعديل مقال -->
+    <nz-modal [(nzVisible)]="isModalVisible" nzTitle="{{ isEditing ? 'تعديل مقال' : 'إضافة مقال' }}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <form nz-form [formGroup]="articleForm">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>title</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <input nz-input formControlName="title" placeholder="أدخل عنوان المقال" />
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Decription</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea rows="4" nz-input formControlName="description" placeholder="أدخل وصف المقال"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-modal>
+  </div>
+  

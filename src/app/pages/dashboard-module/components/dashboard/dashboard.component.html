@@ -1,0 +1,119 @@
+<nz-layout>
+  <nz-header>
+    <ul style="width: 100%;" nz-menu nzTheme="light" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item nzSelected class="logo">
+        <span class="logo-text">تأمينك</span>
+    </li>
+  
+   
+      <li nz-menu-item class="search-item">
+        <nz-input-group [nzSuffix]="suffixIcon" class="search-input-group">
+          <input type="text" nz-input placeholder="ابحث هنا..." />
+        </nz-input-group>
+        <ng-template #suffixIcon>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+      </li>
+      <li nz-menu-item class="header-icon-item notification-wrapper" [routerLink]="['../','ui','notification']" >
+        <a nz-dropdown nzPlacement="bottomRight">
+          <nz-badge [nzCount]="5" [nzOverflowCount]="9">
+            <i nz-icon nzType="bell" nzTheme="outline" class="bell-icon"></i>
+          </nz-badge>
+        </a>
+      
+      
+      </li>
+      
+  
+      <li nz-menu-item class="header-icon-item" nz-tooltip="setting"[routerLink]="['../','ui','setting']" >
+          <i nz-icon nzType="setting" nzTheme="outline" class="bell-icon"></i>
+      </li>
+
+      <li nz-menu-item class="header-icon-item" nz-tooltip="logout">
+        <i (click)="confirmLogout()"  nz-icon nzType="logout" nzTheme="outline" class="bell-icon"></i>
+    </li>
+    
+
+      
+    </ul>
+  </nz-header>
+  
+  <nz-layout>
+    <div class="sider-toggle-button" (click)="isSidebarVisible = !isSidebarVisible">
+      <i nz-icon [nzType]="isSidebarVisible ? 'menu-fold' : 'menu-unfold'"></i>
+    </div>
+
+   
+    <nz-sider
+      *ngIf="isSidebarVisible"
+      nzWidth="200"
+      nzTheme="light"
+      class="custom-sider"
+    >
+
+    <ul nz-menu nzTheme="light" nzMode="inline" >
+
+
+        <li nz-menu-item [routerLink]="['../','ui','home']" nzMatchRouter>
+          <i nz-icon nzType="home" class="menu-icon"></i>
+          <span>Home</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','add-companeis']" nzMatchRouter>
+          <i nz-icon nzType="user" class="menu-icon"></i>
+          <span>Companies</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','event-categories']" nzMatchRouter>
+          <i nz-icon nzType="deployment-unit" class="menu-icon"></i>
+          <span>Categories</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','account-management']" nzMatchRouter>
+          <i nz-icon nzType="appstore" class="menu-icon"></i>
+          <span>Review Management</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','info-center']" nzMatchRouter>
+          <i nz-icon nzType="read" class="menu-icon"></i>
+          <span>Information Center</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','insurance-analytics']" nzMatchRouter>
+          <i nz-icon nzType="bar-chart" class="menu-icon"></i>
+          <span>Insurance Analytics</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','company-performance']" nzMatchRouter>
+          <i nz-icon nzType="team" class="menu-icon"></i>
+          <span>Company Performance</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','usage-stats']" nzMatchRouter>
+          <i nz-icon nzType="line-chart" class="menu-icon"></i>
+          <span>Usage Statistics</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','ads-manager']" nzMatchRouter>
+          <i nz-icon nzType="dollar" class="menu-icon"></i>
+          <span>Paid Ads Manager</span>
+        </li>
+        
+        <li nz-menu-item [routerLink]="['../','ui','payment-Management']" nzMatchRouter>
+          <i nz-icon nzType="dollar" class="menu-icon"></i>
+          <span>Payment Management</span>
+        </li>
+        
+        
+
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+   
+      <nz-content>
+        
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+ 

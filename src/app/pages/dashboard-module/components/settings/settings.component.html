@@ -1,0 +1,27 @@
+<div class="page-container">
+  <div class="theme-settings-panel">
+    <span class="panel-icon">
+      <i nz-icon nzType="skin" nzTheme="outline"></i>
+    </span>
+    <h2 class="panel-title">Appearance Settings</h2>
+    <p class="panel-description">
+      Choose between light and dark themes for the application.
+    </p>
+
+    <div class="custom-toggle-wrapper">
+      <input 
+        type="checkbox" 
+        id="theme-toggle" 
+        class="toggle-checkbox"
+        [checked]="isDarkMode"
+        (change)="toggleTheme()">
+
+      <label for="theme-toggle" class="toggle-label">
+        <i nz-icon nzType="sun" class="icon sun-icon"></i>
+        <i nz-icon nzType="moon" class="icon moon-icon"></i>
+
+        <span class="toggle-ball"></span>
+      </label>
+    </div>
+    </div>
+</div>

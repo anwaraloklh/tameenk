@@ -1,0 +1,42 @@
+<div class="performance-container">
+    <h2>Company Performance</h2>
+  
+    <div class="stats-overview">
+      <div class="stat-box">
+        <h3>Total Active Companies</h3>
+        <p>{{ totalCompanies }}</p>
+      </div>
+      <div class="stat-box">
+        <h3>Top Performer</h3>
+        <p>{{ topCompany.name }}</p>
+      </div>
+      <div class="stat-box">
+        <h3>Average Customer Satisfaction</h3>
+        <p>{{ averageSatisfaction }}%</p>
+      </div>
+    </div>
+  
+    <div class="performance-content">
+      <nz-table [nzData]="companies" [nzFrontPagination]="false" [nzPageSize]="5" [nzScroll]="{ x: '600px' }" nzShowPagination>
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Orders</th>
+            <th>Customer Satisfaction (%)</th>
+            <th>Performance Rating</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of companies">
+            <td>{{ company.name }}</td>
+            <td>{{ company.orders }}</td>
+            <td>{{ company.customerSatisfaction }}</td>
+            <td>{{ company.performanceRating }}</td>
+            <td>{{ company.notes }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+  
+    
+  

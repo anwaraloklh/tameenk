@@ -1,0 +1,45 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  flex-direction: row;
+  
+  position: relative;
+}
+
+.error-500 {
+  background: url("../../../../assets/images/errors/500.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.error-401 {
+  background: url("../../../../assets/images/errors/401.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.error-404 {
+  background: url("../../../../assets/images/errors/404.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.error-403 {
+  background: url("../../../../assets/images/errors/403.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9); /* Adjust the opacity as needed */
+}

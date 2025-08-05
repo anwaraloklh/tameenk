@@ -1,0 +1,108 @@
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .theme-settings-panel {
+    max-width: 450px;
+    width: 100%;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .panel-icon { 
+    display: inline-block; 
+    font-size: 32px; 
+    color: #1890ff; 
+    margin-bottom: 16px; 
+  }
+  
+  .panel-title { 
+    font-size: 24px; 
+    font-weight: 600; 
+    color: #333; 
+    margin-bottom: 8px; 
+  }
+  
+  .panel-description { 
+    font-size: 15px; 
+    color: #888; 
+    margin-bottom: 32px; 
+  }
+  
+  .custom-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .toggle-checkbox {
+    display: none;
+  }
+  
+  .toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 80px;
+    height: 40px;
+    background-color: #d1e5f8;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggle-ball {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .icon {
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .moon-icon { 
+    color: #f5f5f5; 
+  }
+  
+  .sun-icon { 
+    color: #f39c12; 
+  }
+  
+  .toggle-checkbox:checked + .toggle-label {
+    background-color: #2c3e50;
+  }
+  
+  .toggle-checkbox:checked + .toggle-label .toggle-ball {
+    transform: translateX(40px);
+    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.5); 
+  }
+  
+  :host-context(body.dark-theme) {
+    .theme-settings-panel {
+      background-color: #2c2c2e;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    .panel-title { 
+      color: #f5f5f7; 
+    }
+    .panel-description { 
+      color: #a8a8a8; 
+    }
+  }

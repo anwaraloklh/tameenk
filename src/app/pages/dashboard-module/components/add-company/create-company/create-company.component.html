@@ -1,0 +1,56 @@
+<nz-row>
+    <nz-col nzXs="24">
+      <form [formGroup]="validateForm" nz-form nzLayout="vertical" (ngSubmit)="submitForm()">
+  
+        <ng-container *ngFor="let field of ['name', 'email', 'password', 'password_confirmation', 'phone_number', 'address', 'license_number']">
+          <nz-form-item>
+            <nz-form-label [nzRequired]="true">{{ field.replace('_', ' ') | titlecase }}</nz-form-label>
+            <nz-form-control  [nzErrorTip]="field + ' is required!'">
+              <input
+                nz-input
+                [formControlName]="field"
+                [type]="field.includes('password') ? 'password' : 'text'"
+                [placeholder]="'Enter ' + field.replace('_', ' ')"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </ng-container>
+  
+     
+        <nz-form-item>
+          <nz-form-label nzRequired>Image URL</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Image URL is required'">
+            <input nz-input formControlName="image" placeholder="https://example.com/logo.jpg" />
+          </nz-form-control>
+        </nz-form-item>
+  
+        
+        <div *ngIf="validateForm.get('image')?.value" style="margin-bottom: 16px;">
+          <img
+            [src]="validateForm.get('image')?.value"
+            alt="Preview"
+            width="120"
+            style="border: 1px solid #ccc; border-radius: 4px"
+          />
+        </div>
+  
+       
+        <nz-form-item>
+          <nz-form-label>Bio</nz-form-label>
+          <nz-form-control>
+            <textarea nz-input formControlName="bio" placeholder="Enter company bio"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+  
+      
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+            <button nz-button type="button" (click)="close()">Cancel</button>
+          </nz-form-control>
+        </nz-form-item>
+  
+      </form>
+    </nz-col>
+  </nz-row>
+  

@@ -1,0 +1,32 @@
+<nz-layout class="container" [ngClass]="backgroundImageClass">
+  <nz-content>
+  
+  
+    <nz-row nzJustify="center">
+      <nz-col class="text-center" nzLg="8" nzMd="12">
+        
+         <img src="assets/images/logos/logo.png" width="300px"> 
+          <h1 class="text-primary">{{title|uppercase}}</h1>
+          <h3 class="text-white">{{message}}</h3>
+       <br/>
+          <nz-space>
+  
+          
+             
+          <button *nzSpaceItem nz-button nzBlock nzType="primary" nzGhost nzSize="large">
+            <span nz-icon nzType="home" nzTheme="outline"></span>Back To Home 
+          </button>
+    
+          <button *nzSpaceItem nz-button nzType="primary" nzGhost nzDanger nzSize="large">
+            <span nz-icon nzType="logout" nzTheme="outline"></span> Logout
+          </button>
+          </nz-space>
+  
+     
+      </nz-col>
+    </nz-row>
+  </nz-content>
+  </nz-layout>
+  
+  
+  

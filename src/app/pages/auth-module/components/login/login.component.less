@@ -1,0 +1,136 @@
+/* هذا يضمن أن الهامش و التعبئة لا تزيد من الحجم الكلي للعناصر */
+* {
+  box-sizing: border-box;
+}
+
+/* الحاوية الرئيسية للخلفية */
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background: url("../../../../../assets/images/auth/login1.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+
+/* طبقة التراكب (overlay) */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* تنسيق nz-card لجعله الديالوج الشفاف المتناسق */
+.login-card-custom.ant-card {
+  background: rgba(40, 40, 40, 0.7); /* خلفية رمادية شفافة */
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  margin-left: -130px;
+
+  box-shadow: 
+    0 0 20px rgba(4, 4, 161, 0.336), /* توهج كحلي */
+    0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.login-card-custom .ant-card-body {
+  background: transparent;
+  padding: 24px;
+}
+
+.login-form {
+  padding: 0 10px;
+}
+
+.login-form .ant-input-group-addon,
+.login-form input.ant-input {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #0c0c0c;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* تحسين لون placeholder */
+.login-form input.ant-input::placeholder {
+  color: rgba(245, 245, 245, 0.7); /* لون أبيض ناعم */
+}
+
+/* عند التركيز */
+.login-form input.ant-input:focus {
+  border-color: #866509; /* لون ذهبي */
+  box-shadow: 0 0 0 2px rgba(134, 101, 9, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.login-form .ant-input-group-prefix .anticon {
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease;
+}
+
+/* أيقونة التركيز */
+.login-form input.ant-input:focus + .ant-input-group-prefix .anticon {
+  color: #866509;
+}
+
+/* أزرار Log in و Clear */
+.login-form-button.ant-btn-primary {
+  background-color: #866509;
+  border-color: #866509;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.login-form-button.ant-btn-primary:hover,
+.login-form-button.ant-btn-primary:focus {
+  background-color: #a07d1a;
+  border-color: #a07d1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-form-button.ant-btn-default {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.login-form-button.ant-btn-default:hover,
+.login-form-button.ant-btn-default:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* رسالة الخطأ */
+[role='alert'] {
+  text-align: left !important;
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.login-card-custom img {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+  height: auto;
+}

@@ -1,0 +1,38 @@
+<div class="analytics-container">
+    <h2 class="page-title">Insurance Analytics Dashboard</h2>
+  
+    <!-- Stats Section -->
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let stat of stats" [style.borderColor]="stat.color">
+        <i nz-icon [nzType]="stat.icon" [style.color]="stat.color" class="stat-icon"></i>
+        <div class="stat-details">
+          <div class="stat-title">{{ stat.title }}</div>
+          <div class="stat-value">{{ stat.value | number }}</div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Top Companies Table -->
+    <div class="table-section">
+      <h3>Top Performing Insurance Companies</h3>
+  
+      <nz-table [nzData]="topCompanies" [nzBordered]="true" [nzSize]="'middle'">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Policies Sold</th>
+            <th>Customer Satisfaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of topCompanies">
+            <td>{{ c.name }}</td>
+            <td>{{ c.policies }}</td>
+            <td>{{ c.satisfaction }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      
+    </div>
+  </div>
+  

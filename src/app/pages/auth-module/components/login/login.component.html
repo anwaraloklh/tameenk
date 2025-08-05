@@ -1,0 +1,46 @@
+<nz-layout class="container">
+  <nz-content>
+    <nz-row nzJustify="center">
+      <nz-col class="text-center" nzLg="10" nzSm="24" nzXs="24" nzMd="16">
+        <nz-card class="login-card-custom">
+          <img src="assets/images/logos/logoauth.png" width="300px" />
+
+          <div style="text-align: left;">
+            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+              
+           
+
+              <!-- Email -->
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input valid email">
+                  <nz-input-group nzPrefixIcon="mail">
+                    <input type="email" nz-input formControlName="email" placeholder="Email" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+
+              <!-- Password -->
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your password">
+                  <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+
+         
+              <div style="text-align: center;">
+                <button style="margin-right: 1rem;" nz-button class="login-form-button" [nzType]="'primary'">
+                  Log in
+                </button>
+                <button nz-button type="button" class="login-form-button" (click)="reset()" [nzType]="'default'">
+                  Clear
+                </button>
+              </div>
+            </form>
+          </div>
+        </nz-card>
+      </nz-col>
+    </nz-row>
+  </nz-content>
+</nz-layout>

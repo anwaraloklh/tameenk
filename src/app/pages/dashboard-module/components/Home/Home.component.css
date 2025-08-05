@@ -1,0 +1,195 @@
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background: #f0f2f5;
+  font-family: 'Cairo', sans-serif;
+}
+
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+
+.stat-card {
+  border-radius: 14px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  background: linear-gradient(135deg, #e3f2fd, #fff);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: linear-gradient(135deg, #d0ebff, #ffffff);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+
+nz-statistic .ant-statistic-title {
+  color: #555 !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+nz-statistic .ant-statistic-content-value {
+  color: #1890ff !important;
+  font-size: 24px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.stat-card:hover nz-statistic .ant-statistic-content-value {
+  color: #096dd9 !important;
+}
+
+
+.positive {
+  color: #52c41a;
+  font-weight: 500;
+}
+
+.negative {
+  color: #f5222d;
+  font-weight: 500;
+}
+
+
+.charts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* بطاقة الرسم */
+.charts-row nz-card {
+  flex: 1 1 400px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e3f2fd, #fff);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.charts-row nz-card:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #d0ebff, #ffffff);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+
+.progress-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px 10px;
+  gap: 16px;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.8s ease-in-out;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 120px;
+  transition: transform 0.3s;
+}
+
+.progress-item:hover {
+  transform: scale(1.05);
+}
+
+.progress-item div {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+
+  nz-card {
+    flex: 1 1 48%;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.line-placeholder {
+  margin-top: 20px;
+}
+
+.circle-stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+#tradingChartContainer {
+  width: 600%;
+  max-width: 1000px;  
+  height: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #f9fafb;  /* لون خلفية ناعم */
+  border: 2px solid #1890ff; /* حدود باللون الأزرق */
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 8px 20px rgb(24 144 255 / 0.2);
+  background-image:
+    linear-gradient(to right, #d0d7de 1px, transparent 1px),
+    linear-gradient(to bottom, #d0d7de 1px, transparent 1px);
+  background-size: 40px 40px; /* حجم مربعات الشبكة */
+}
+
+/* إذا تريد نقطة مميزة عند hover على النقاط */
+.g2-tooltip-list-item-value {
+  font-weight: 600;
+  color: #1890ff;
+}
+
+/* تحسين شكل نقاط الخط */
+.g2-geom-point {
+  transition: transform 0.3s ease;
+}
+
+.g2-geom-point:hover {
+  transform: scale(1.3);
+  fill: #1890ff !important;
+  stroke-width: 3px !important;
+}
+
+/* خطوط الشبكة الداخلية (من داخل الرسم) */
+g.grid-line line {
+  stroke: #d0d7de;
+  stroke-dasharray: 3 3;
+}
+
+/* محور الرسم */
+g.axis-line line {
+  stroke: #1890ff;
+  stroke-width: 2;
+}

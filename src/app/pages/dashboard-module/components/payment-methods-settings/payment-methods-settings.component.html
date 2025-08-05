@@ -1,0 +1,17 @@
+<div class="container">
+    <h2 class="title">Payment Methods Management</h2>
+  
+    <div class="methods-grid">
+      <div class="method-card" *ngFor="let method of paymentMethods">
+        <div class="method-info">
+          <h4>{{ method.name }}</h4>
+          <p>{{ method.description }}</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="method.enabled" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  

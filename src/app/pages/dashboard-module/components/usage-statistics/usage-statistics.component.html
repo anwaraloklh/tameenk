@@ -1,0 +1,47 @@
+<div class="usage-stats-container">
+    <h2>Usage Statistics</h2>
+  
+    <div class="stats-summary">
+      <div class="stat-item">
+        <h3>Total Users</h3>
+        <p>{{ totalUsers }}</p>
+      </div>
+      <div class="stat-item">
+        <h3>Active Sessions</h3>
+        <p>{{ activeSessions }}</p>
+      </div>
+      <div class="stat-item">
+        <h3>Average Session Duration (min)</h3>
+        <p>{{ avgSessionDuration }}</p>
+      </div>
+    </div>
+  
+    <nz-table
+      [nzData]="usageData"
+      [nzFrontPagination]="true"
+      [nzPageSize]="7"
+      [nzScroll]="{ x: '700px' }"
+      nzShowPagination
+      nzSize="middle"
+    >
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Login Count</th>
+          <th>Last Login</th>
+          <th>Pages Visited</th>
+          <th>Average Time (min)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of usageData">
+          <td>{{ item.user }}</td>
+          <td>{{ item.loginCount }}</td>
+          <td>{{ item.lastLogin | date:'medium' }}</td>
+          <td>{{ item.pagesVisited }}</td>
+          <td>{{ item.avgTime }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  

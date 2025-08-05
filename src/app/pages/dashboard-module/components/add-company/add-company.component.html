@@ -1,0 +1,105 @@
+<nz-page-header
+  class="site-page-header"
+  nzTitle="Companies Management"
+  nzSubtitle="Manage all insurance companies"
+>
+  <nz-breadcrumb nz-page-header-breadcrumb></nz-breadcrumb>
+  
+  
+
+
+
+  <nz-page-header-extra>
+    <div style="display: flex; gap: 10px;">
+      <button nz-button nzType="primary" (click)="openCreateModal()">
+        Create <span nz-icon nzType="plus" nzTheme="outline" ></span>
+      </button>
+
+      <button (click)="loadCompanies()" nz-button>
+        Refresh <span nz-icon nzType="reload" nzTheme="outline"></span>
+      </button>
+    </div>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-table  class="company-table"
+  nzSize="small"
+  #borderedTable
+  nzBordered
+  nzPaginationType="small"
+  nzShowPagination="true"
+  [nzLoading]="loading" 
+  style="margin-top: 1rem;"
+  [nzData]="dataSet"
+>
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>License #</th>
+      <th>Bio</th>
+    
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of borderedTable.data">
+      <td>
+        <img
+          [src]="data.image"
+          alt="Logo"
+          width="60"
+          height="40"
+          style="object-fit: cover; border-radius: 4px;"
+        />
+      </td>
+      <td>
+        <span nz-tooltip [nzTooltipTitle]="data.name">{{ data.name }}</span>
+      </td>
+      <td>
+        <span nz-tooltip [nzTooltipTitle]="data.email">{{ data.email }}</span>
+      </td>
+      <td>
+        <span nz-tooltip [nzTooltipTitle]="data.phone_number">{{ data.phone_number }}</span>
+      </td>
+      <td>
+        <span nz-tooltip [nzTooltipTitle]="data.address">{{ data.address }}</span>
+      </td>
+      <td>
+        <span nz-tooltip [nzTooltipTitle]="data.license_number">{{ data.license_number }}</span>
+      </td>
+      <td>
+        <ng-container *ngIf="data.bio.length <= 25; else showMore">
+          {{ data.bio }}
+        </ng-container>
+        
+        <ng-template #showMore>
+          {{ data.bio | slice:0:50 }}...
+          <a (click)="showFullBio(data)" style="color: #1890ff; cursor: pointer;">قراءة المزيد</a>
+        </ng-template>
+      </td>
+      
+      
+      
+      <td>
+      
+
+        <button
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure you want to delete this company?"
+          (nzOnConfirm)="delete(data.id)"
+          nz-button
+          nzType="primary"
+          nzDanger
+          nzSize="small"
+          nzShape="circle"
+        >
+          <span nz-icon nzType="delete"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

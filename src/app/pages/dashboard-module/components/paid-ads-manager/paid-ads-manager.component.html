@@ -1,0 +1,41 @@
+<div class="container">
+    <h2 class="title">Paid Ads Manager</h2>
+  
+    <div class="stats-cards">
+      <div class="card">
+        <h3>Total Budget</h3>
+        <p>${{ totalBudget | number:'1.0-0' }}</p>
+      </div>
+      <div class="card">
+        <h3>Active Campaigns</h3>
+        <p>{{ campaigns.length }}</p>
+      </div>
+      <div class="card">
+        <h3>Avg ROI</h3>
+        <p>{{ avgROI | percent:'1.0-0' }}</p>
+      </div>
+    </div>
+  
+    <div class="campaigns-list">
+      <div 
+        class="campaign-card" 
+        *ngFor="let c of campaigns"
+        [ngClass]="{'success': c.roi >= 1, 'failure': c.roi < 1}">
+        <h4>{{ c.name }}</h4>
+        <p>Status: <span>{{ c.roi >= 1 ? 'Successful' : 'Unsuccessful' }}</span></p>
+        <p>Budget: ${{ c.budget | number:'1.0-0' }}</p>
+        <p>Revenue: ${{ c.revenue | number:'1.0-0' }}</p>
+        <div class="progress-bar">
+          <div 
+            class="progress" 
+            [style.width.%]="(c.revenue / c.budget) * 100">
+          </div>
+        </div>
+        <div class="actions">
+          <button (click)="editCampaign(c)">Edit</button>
+          <button (click)="deleteCampaign(c)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>ِ
+  

@@ -1,0 +1,100 @@
+/* src/app/welcome/welcome.component.scss */
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f4f8; 
+    z-index: 9999;
+    overflow: hidden; 
+  }
+  
+  .logo-container {
+    text-align: center;
+  }
+  
+  .logo-word {
+    font-family: 'Cairo', sans-serif; 
+    font-size: 6rem;
+    font-weight: 700;
+    /* ================== التغيير هنا ================== */
+    color: #B8860B; /* تم تغيير اللون إلى الذهبي */
+    /* =============================================== */
+    letter-spacing: 5px;
+    animation: 
+      squashLetters 0.5s ease-out 2.7s forwards,
+      pulse 2s ease-in-out 3.2s infinite;
+  }
+  
+  .logo-word span {
+    display: inline-block; 
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes comeFromLeft { from { opacity: 0; transform: translateX(-100px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes comeFromRight { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes comeFromTop { from { opacity: 0; transform: translateY(-100px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes comeFromBottom { from { opacity: 0; transform: translateY(100px); } to { opacity: 1; transform: translateY(0); } }
+  
+  .logo-word span:nth-child(1) { animation: comeFromTop 0.8s ease-out 0.3s; }
+  .logo-word span:nth-child(2) { animation: comeFromRight 0.8s ease-out 0.6s; }
+  .logo-word span:nth-child(3) { animation: comeFromBottom 0.8s ease-out 0.9s; }
+  .logo-word span:nth-child(4) { animation: comeFromLeft 0.8s ease-out 1.2s; }
+  .logo-word span:nth-child(5) { animation: comeFromTop 0.8s ease-out 1.5s; }
+  .logo-word span:nth-child(6) { animation: comeFromRight 0.8s ease-out 1.8s; }
+  
+  @keyframes squashLetters {
+    from {
+      letter-spacing: 5px;
+    }
+    to {
+      letter-spacing: -2px;
+    }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .subtitle {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.5rem;
+    /* ================== التغيير هنا ================== */
+    color: #B8860B; /* تم تغيير اللون إلى الذهبي */
+    /* =============================================== */
+    direction: rtl;
+    width: max-content;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    /* ================== التغيير هنا ================== */
+    border-left: 3px solid #B8860B; /* تم تغيير لون المؤشر أيضاً */
+    /* =============================================== */
+    margin: 20px auto 0;
+    animation: 
+      typing 3s steps(32) 3s forwards,
+      blink .75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { max-width: 0; }
+    to { max-width: 100%; }
+  }
+  
+  @keyframes blink {
+    from, to { border-color: transparent; }
+    /* ================== التغيير هنا ================== */
+    50% { border-color: #B8860B; } /* تم تغيير لون وميض المؤشر */
+    /* =============================================== */
+  }
+
+
+

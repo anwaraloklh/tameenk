@@ -1,0 +1,46 @@
+<nz-row>
+  <nz-col nzXs="24">
+    <form
+      nz-form
+      nzLayout="vertical"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <!-- Title -->
+      <nz-form-item>
+        <nz-form-label nzRequired>Title</nz-form-label>
+        <nz-form-control
+          nzHasFeedback
+          [nzValidateStatus]="validateForm.get('title')!"
+          [nzErrorTip]="titleErrorTpl"
+        >
+          <input
+            nz-input
+            formControlName="title"
+            placeholder="Enter title"
+          />
+          <ng-template #titleErrorTpl>
+            <ng-container *ngIf="validateForm.get('title')?.hasError('required')">
+              Title is required!
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+     
+      <!-- Buttons -->
+      <nz-form-item>
+        <nz-form-control>
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="!validateForm.valid"
+          >
+            Update
+          </button>
+          <button nz-button type="button" (click)="close()">Cancel</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-col>
+</nz-row>

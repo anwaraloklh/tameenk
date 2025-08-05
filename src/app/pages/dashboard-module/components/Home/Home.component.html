@@ -1,0 +1,69 @@
+
+    <div class="stats-row">
+      <nz-card class="stat-card" *ngFor="let stat of mainStats">
+        <nz-statistic
+          [nzTitle]="stat.title"
+          [nzValue]="stat.value"
+          [nzSuffix]="stat.suffix"
+        >
+          <ng-container *nzStatisticSuffix>
+            <span [ngClass]="{'positive': stat.change >= 0, 'negative': stat.change < 0}">
+              <i nz-icon [nzType]="stat.change >= 0 ? 'arrow-up' : 'arrow-down'" nzTheme="outline"></i>
+              {{ stat.change }}%
+            </span>
+          </ng-container>
+        </nz-statistic>
+      </nz-card>
+    </div>
+  
+    <div class="charts-row">
+      <nz-card nzTitle="نسبة التأمين حسب النوع">
+        <div class="progress-group">
+          <div *ngFor="let type of insuranceTypes" class="progress-item">
+            <div>{{ type.name }}</div>
+            <nz-progress [nzPercent]="type.percent" [nzStrokeColor]="type.color" nzType="circle" [nzWidth]="80"></nz-progress>
+          </div>
+        </div>
+      </nz-card>
+    </div>
+
+    
+    <nz-card nzTitle=" الإحصائيات" [nzBordered]="true">
+      <div id="tradingChartContainer" style="height: 300px;"></div>
+    </nz-card>
+    
+  
+    <div class="insurance-table-section">
+        <nz-card nzTitle="شركات التأمين المتعاقد معها">
+          <nz-table
+            [nzData]="insuranceCompanies"
+            [nzBordered]="true"
+            [nzSize]="'middle'"
+            [nzScroll]="{ x: '100%' }"
+          >
+            <thead>
+              <tr>
+                <th>الشركة</th>
+                <th>نوع التأمين</th>
+                <th>الموقع</th>
+              
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let company of insuranceCompanies">
+                <td><strong>{{ company.name }}</strong></td>
+                <td>{{ company.type }}</td>
+                <td>{{ company.location }}</td>
+                
+                <td>
+                  <nz-tag [nzColor]="company.status === 'نشطة' ? 'green' : 'volcano'">
+                    {{ company.status }}
+                  </nz-tag>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </nz-card>
+
+      

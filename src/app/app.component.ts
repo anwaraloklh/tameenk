@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { ThemeService } from './pages/dashboard-module/models/place-category/theme.service';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet,NzLayoutModule ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.less'
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'siib-ui';
+  isCollapsed = false;
+  constructor(private themeService: ThemeService) {}
 }
