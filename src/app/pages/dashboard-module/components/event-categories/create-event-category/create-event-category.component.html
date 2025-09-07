@@ -29,48 +29,32 @@
 
      
       <nz-form-item>
-        <nz-form-label nzRequired>Image URL</nz-form-label>
-        <nz-form-control
-          nzHasFeedback
-          [nzValidateStatus]="validateForm.get('imageUrl')!"
-          [nzErrorTip]="imageUrlErrorTpl"
-        >
-          <input
-            nz-input
-            placeholder="https://example.com/image.jpg"
-            formControlName="imageUrl"
-          />
-          <ng-template #imageUrlErrorTpl>
-            <ng-container *ngIf="validateForm.get('imageUrl')?.hasError('required')">
-              Image URL is required!
-            </ng-container>
-          </ng-template>
+        <nz-form-label nzRequired>Image</nz-form-label>
+        <nz-form-control>
+          <label class="upload-btn">
+            <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+            <i nz-icon nzType="upload" nzTheme="outline"></i>
+            Choose Image
+          </label>
         </nz-form-control>
       </nz-form-item>
-      
-     
-      <div *ngIf="validateForm.get('imageUrl')?.value" style="margin-top: 10px">
+
+ 
+      <div *ngIf="imagePreviewUrl" style="margin-top: 10px">
         <img
-        [src]="validateForm.get('imageUrl')?.value"
-        alt="Preview"
-        width="120"
-        style="border: 1px solid #ccc; border-radius: 4px"
-      />
+          [src]="imagePreviewUrl"
+          alt="Preview"
+          style="max-width: 200px; border-radius: 8px; border: 1px solid #ccc;"
+        />
       </div>
-      
+
 
       
 
       
       <nz-form-item>
         <nz-form-control>
-          <button
-            nz-button
-            nzType="primary"
-            [disabled]="!validateForm.valid "
-          >
-            Submit
-          </button>
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
           <button nz-button type="button" (click)="close()">Cancel</button>
         </nz-form-control>
       </nz-form-item>

@@ -18,19 +18,22 @@
   
      
         <nz-form-item>
-          <nz-form-label nzRequired>Image URL</nz-form-label>
-          <nz-form-control [nzErrorTip]="'Image URL is required'">
-            <input nz-input formControlName="image" placeholder="https://example.com/logo.jpg" />
+          <nz-form-label nzRequired>Image</nz-form-label>
+          <nz-form-control>
+            <label class="upload-btn">
+              <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+              <i nz-icon nzType="upload" nzTheme="outline"></i>
+              Choose Image
+            </label>
           </nz-form-control>
         </nz-form-item>
   
-        
-        <div *ngIf="validateForm.get('image')?.value" style="margin-bottom: 16px;">
+   
+        <div *ngIf="imagePreviewUrl" style="margin-top: 10px">
           <img
-            [src]="validateForm.get('image')?.value"
+            [src]="imagePreviewUrl"
             alt="Preview"
-            width="120"
-            style="border: 1px solid #ccc; border-radius: 4px"
+            style="max-width: 200px; border-radius: 8px; border: 1px solid #ccc;"
           />
         </div>
   

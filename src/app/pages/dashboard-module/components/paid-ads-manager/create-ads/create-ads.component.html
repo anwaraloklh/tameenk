@@ -1,0 +1,51 @@
+<form
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="validateForm"
+  (ngSubmit)="submitForm()"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired>Description</nz-form-label>
+    <nz-form-control
+      nzHasFeedback
+      [nzValidateStatus]="validateForm.get('description')!"
+    >
+      <input
+        nz-input
+        formControlName="description"
+        placeholder="Enter description"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- زر اختيار صورة -->
+  <nz-form-item>
+    <nz-form-label nzRequired>Image</nz-form-label>
+    <nz-form-control>
+      <label class="upload-btn">
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+        <i nz-icon nzType="upload" nzTheme="outline"></i>
+        Choose Image
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <div *ngIf="imagePreviewUrl" style="margin-top: 10px">
+    <img
+      [src]="imagePreviewUrl"
+      alt="Preview"
+      style="max-width: 200px; border-radius: 8px; border: 1px solid #ccc;"
+    />
+  </div>
+
+  <nz-form-item>
+    <nz-form-control>
+     
+      <button nz-button nzType="primary" type="submit">
+        Submit
+      </button>
+      
+    </nz-form-control>
+  </nz-form-item>
+</form>

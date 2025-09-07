@@ -10,5 +10,6 @@ export interface AddCompaniesList {
     license_number: string;
     image: string;
     bio: string;
+    sales?: number;
   }
   

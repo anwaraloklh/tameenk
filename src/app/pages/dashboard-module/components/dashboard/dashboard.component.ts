@@ -11,7 +11,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 })
 export class DashboardComponent implements OnInit {
   isSidebarVisible = false;
-
+  isCollapsed=false;
   ngOnInit() {
   }
   constructor(
@@ -53,4 +53,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+
+
 }

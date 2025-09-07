@@ -39,39 +39,104 @@ nz-page-header{
 
 /* src/styles.scss */
 
-/* ================== Dark Theme Styles (Scoped for Dashboard) ================== */
+
 .dark-theme {
-    // لون الخلفية الرئيسي للمحتوى
-    .inner-layout {
-      background: #1a1a1a !important;
-    }
-    
-    // لون الهيدر والسايدر والبطاقات
-    .ant-layout-header, .ant-layout-sider,
-    .ant-menu, .ant-modal-content {
-      background: #2c2c2e !important;
-      color: #e0e0e0 !important;
-    }
-  
-    // لون النصوص والعناوين العامة داخل الإطار
-    h1, h2, h3, h4, .ant-typography, .logo-text,
-    .ant-menu-item, .ant-menu-submenu-title {
-      color: #f5f5f7 !important;
-    }
-  
-    .ant-menu-item-selected {
-      background-color: #005a9c !important;
-    }
-  
-    // المدخلات في الهيدر
-    .ant-input {
-      background-color: #3a3a3c !important;
-      color: #e0e0e0 !important;
-      border-color: #555 !important;
-    }
-  
-    /*
-      -- تم حذف جميع الأنماط المتعلقة بالجداول من هنا --
-      -- .ant-table, .ant-table-thead, .ant-table-tbody --
-    */
+  /* الخلفية العامة */
+  .content-area,
+  .inner-layout,
+  nz-layout {
+    background: #0d0d0d !important;
+    color: #f5f5f5 !important;
+    min-height: 100vh;
   }
+
+  /* الهيدر + السايدبار */
+  .ant-layout-header,
+  .ant-layout-sider,
+  .ant-menu,
+  .ant-modal-content {
+    background: #141414 !important;
+    color: #e0e0e0 !important;
+    border-right: 1px solid #1f1f1f;
+  }
+
+  /* النصوص */
+  h1, h2, h3, h4, .ant-typography,
+  .logo-text, .ant-menu-item,
+  .ant-menu-submenu-title {
+    color: #f5f5f7 !important;
+  }
+
+  /* العناصر المختارة في المينيو */
+  .ant-menu-item-selected {
+    background: #1890ff !important;
+    color: #fff !important;
+    border-radius: 6px;
+  }
+
+  /* البطاقات */
+  .ant-card {
+    background: #1c1c1e !important;
+    border: 1px solid #2a2a2a !important;
+    color: #f0f0f0 !important;
+    transition: all 0.3s ease;
+  }
+
+  .ant-card:hover {
+    border-color: #1890ff !important;
+    box-shadow: 0 0 12px rgba(24,144,255,0.5);
+  }
+
+  /* الجداول */
+  .ant-table {
+    background: #1c1c1e !important;
+    color: #f0f0f0 !important;
+  }
+  .ant-table-thead > tr > th {
+    background: #141414 !important;
+    color: #bfbfbf !important;
+    border-bottom: 1px solid #2a2a2a !important;
+  }
+  .ant-table-tbody > tr > td {
+    background: #1c1c1e !important;
+    border-bottom: 1px solid #2a2a2a !important;
+  }
+
+  /* المدخلات */
+  .ant-input, .ant-select-selector, .ant-picker {
+    background: #1c1c1e !important;
+    color: #f5f5f5 !important;
+    border: 1px solid #333 !important;
+  }
+
+  .ant-input:focus, .ant-select-selector:focus, .ant-picker-focused {
+    border-color: #1890ff !important;
+    box-shadow: 0 0 8px rgba(24,144,255,0.5);
+  }
+
+  /* الأزرار */
+  .ant-btn-primary {
+    background: #1890ff !important;
+    border: none !important;
+    color: #fff !important;
+  }
+  .ant-btn-primary:hover {
+    background: #40a9ff !important;
+  }
+
+  .ant-btn-default {
+    background: #2a2a2a !important;
+    color: #f0f0f0 !important;
+    border: 1px solid #444 !important;
+  }
+  .ant-btn-default:hover {
+    border-color: #1890ff !important;
+    color: #1890ff !important;
+  }
+}
+
+
+
+
+ 
+  

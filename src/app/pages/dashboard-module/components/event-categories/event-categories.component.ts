@@ -27,7 +27,13 @@ export class EventCategoriesComponent implements OnInit {
     this.loading = true;
     this.eventCategoryService.getList().subscribe({
       next: (categories) => {
-        this.dataSet = categories;
+        this.dataSet = categories.map((ad: EventCategoryList) => {
+        
+          return {
+            ...ad,
+            image: ad.image ? `https://taaminak.tahamove.com/storage/${ad.image}` : ''
+          };
+        });
         this.loading = false;
       },
       error: (err) => {

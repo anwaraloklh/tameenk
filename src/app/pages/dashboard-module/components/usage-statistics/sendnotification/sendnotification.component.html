@@ -1,0 +1,33 @@
+<div class="notification-form">
+    <h3>Send Notification to {{ user.name }}</h3>
+  
+    <label>Title</label>
+    <input
+      nz-input
+      [(ngModel)]="notificationTitle"
+      placeholder="Enter title"
+      class="input-field"
+    />
+  
+    <label>Body</label>
+    <textarea
+      nz-input
+      rows="4"
+      [(ngModel)]="notificationBody"
+      placeholder="Enter message"
+      class="input-field"
+    ></textarea>
+  
+    <div class="actions">
+      <button nz-button nzType="default" (click)="cancel()">Cancel</button>
+      <button
+        nz-button
+        nzType="primary"
+        [nzLoading]="loading"
+        (click)="sendNotification()"
+      >
+        Send
+      </button>
+    </div>
+  </div>
+  

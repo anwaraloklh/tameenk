@@ -49,6 +49,13 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { PaymentMethodsSettingsComponent } from './components/payment-methods-settings/payment-methods-settings.component';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { CreateAdsComponent } from './components/paid-ads-manager/create-ads/create-ads.component';
+
+import {  NzUploadModule  } from 'ng-zorro-antd/upload';
+import { UpdateAdsComponent } from './components/paid-ads-manager/update-ads/update-ads.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+
+import { SendnotificationComponent } from './components/usage-statistics/sendnotification/sendnotification.component';
 
 
 
@@ -69,7 +76,10 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
     UsageStatisticsComponent,
     PaidAdsManagerComponent,
     CreateCompanyComponent,
-    PaymentMethodsSettingsComponent
+    PaymentMethodsSettingsComponent,
+    CreateAdsComponent,
+    UpdateAdsComponent,
+    SendnotificationComponent
   ],
 
   imports: [
@@ -115,6 +125,11 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
     NzToolTipModule,
     NzTimelineModule,
     NzSkeletonModule,
+    NzUploadModule,
+    NzSpinModule,
+  
+    
+  
     
   
   ],

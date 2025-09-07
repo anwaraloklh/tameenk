@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+
 import { AddCompaniesList } from '../models/place-category/place-category-list';
 
 
@@ -22,6 +22,10 @@ export class AddCompanyService {
   }
 
 
+  getAllUsers(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<any>('https://taaminak.tahamove.com/api/admin/statistics', { headers });
+  }
 
 
 createCompany(data: FormData): Observable<any> {
@@ -33,6 +37,7 @@ createCompany(data: FormData): Observable<any> {
  
   return this.http.post(`${this.baseUrl}`, data, { headers });
 }
+
   deleteCompany(id: number): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.delete(`${this.baseUrl}/${id}`, { headers });
@@ -52,6 +57,13 @@ createCompany(data: FormData): Observable<any> {
     const url = `${this.baseUrl}/${id}/approve`;
     return this.http.post(url, {}, { headers });
   }
+
+  getCompanyPerformance(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<any>(this.baseUrl, { headers });
+  }
+  
+
 
     
 }

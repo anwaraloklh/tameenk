@@ -1,195 +1,262 @@
-
+/* ---- الحاوية الرئيسية ---- */
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  background: #f0f2f5;
+  gap: 32px;
+  padding: 32px;
+  background: linear-gradient(135deg, #e0f7fa, #f3f9ff);
   font-family: 'Cairo', sans-serif;
+  animation: fadeIn 1s ease-in-out;
+  overflow-x: hidden;
 }
 
-
+/* ---- الإحصائيات الرئيسية ---- */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
-
-
 .stat-card {
-  border-radius: 14px;
-  transition: all 0.3s ease-in-out;
+  border-radius: 18px;
+  transition: all 0.5s ease-in-out;
   cursor: pointer;
-  background: linear-gradient(135deg, #e3f2fd, #fff);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(145deg, #ffffff, #d0eaff);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  border: 2px solid rgba(24,144,255,0.2);
+  overflow: hidden;
 }
-
+.stat-card::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(24,144,255,0.08) 15%, transparent 70%);
+  top: -50%;
+  left: -50%;
+  animation: waveMove 6s linear infinite;
+  transform: rotate(25deg);
+}
 .stat-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  background: linear-gradient(135deg, #d0ebff, #ffffff);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-12px) scale(1.05);
+  background: linear-gradient(145deg, #bae0ff, #ffffff);
+  box-shadow: 0 15px 40px rgba(24,144,255,0.25);
 }
-
 
 nz-statistic .ant-statistic-title {
-  color: #555 !important;
+  color: #222 !important;
   font-size: 16px;
   font-weight: bold;
 }
-
 nz-statistic .ant-statistic-content-value {
   color: #1890ff !important;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
-
 .stat-card:hover nz-statistic .ant-statistic-content-value {
   color: #096dd9 !important;
 }
+.positive { color: #52c41a; font-weight: 700; text-shadow: 1px 1px 4px #a2f2a2; }
+.negative { color: #f5222d; font-weight: 700; text-shadow: 1px 1px 4px #f98b8b; }
 
-
-.positive {
-  color: #52c41a;
-  font-weight: 500;
+/* ---- شركات التأمين (فوق المخطط) ---- */
+.companies-row {
+  margin-top: 24px;
+  animation: fadeInUp 1s ease-in-out;
+}
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
+}
+.company-card {
+  background: linear-gradient(145deg, #ffffff, #e6f4ff);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 8px 24px rgba(24,144,255,0.18);
+  transition: all 0.5s;
+  border: 2px solid rgba(24,144,255,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.company-card::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(24,144,255,0.05) 15%, transparent 70%);
+  top: -25%;
+  left: -25%;
+  transform: rotate(25deg);
+  animation: waveMove 8s linear infinite;
+}
+.company-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 36px rgba(24,144,255,0.3);
+  background: linear-gradient(145deg, #c6e4ff, #ffffff);
+}
+.company-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1890ff;
+  box-shadow: 0 6px 18px rgba(24,144,255,0.35);
+  transition: transform 0.5s;
+}
+.company-card:hover img {
+  transform: rotate(-10deg) scale(1.08);
+}
+.company-info h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1890ff;
+  text-shadow: 1px 1px 3px #a2d9ff;
+}
+.company-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+.company-info .address {
+  font-size: 12px;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.negative {
-  color: #f5222d;
-  font-weight: 500;
-}
-
-
+/* ---- تقدم التأمين ---- */
 .charts-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 20px;
+  gap: 26px;
+  margin-top: 24px;
 }
-
-/* بطاقة الرسم */
 .charts-row nz-card {
-  flex: 1 1 400px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #e3f2fd, #fff);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  flex: 1 1 450px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #f0f8ff, #ffffff);
+  box-shadow: 0 10px 28px rgba(24,144,255,0.18);
+  transition: all 0.5s ease;
+  overflow: hidden;
+  position: relative;
 }
-
 .charts-row nz-card:hover {
-  transform: translateY(-5px);
-  background: linear-gradient(135deg, #d0ebff, #ffffff);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  background: linear-gradient(145deg, #d6ecff, #ffffff);
+  box-shadow: 0 15px 40px rgba(24,144,255,0.25);
 }
-
-
 .progress-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px 10px;
-  gap: 16px;
+  padding: 22px 12px;
+  gap: 18px;
 }
-
 .progress-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeInUp 0.8s ease-in-out;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  width: 120px;
-  transition: transform 0.3s;
+  animation: fadeInUp 1s ease-in-out;
+  background: linear-gradient(145deg, #ffffff, #e8f4ff);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(24,144,255,0.18);
+  width: 130px;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
-
 .progress-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(24,144,255,0.25);
 }
-
 .progress-item div {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: bold;
-  color: #007bff;
+  color: #096dd9;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-.chart-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-
-  nz-card {
-    flex: 1 1 48%;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-}
-
-.line-placeholder {
-  margin-top: 20px;
-}
-
-.circle-stat {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-}
+/* ---- الرسم الخطي ---- */
 #tradingChartContainer {
-  width: 600%;
-  max-width: 1000px;  
-  height: 600px;
-  margin: 20px auto;
-  padding: 15px;
-  background: #f9fafb;  /* لون خلفية ناعم */
-  border: 2px solid #1890ff; /* حدود باللون الأزرق */
-  border-radius: 10px;
+  width: 100%;
+  max-width: 1200px;
+  height: 450px;
+  margin: 28px auto;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #f0faff, #ffffff);
   position: relative;
-  box-shadow: 0 8px 20px rgb(24 144 255 / 0.2);
-  background-image:
-    linear-gradient(to right, #d0d7de 1px, transparent 1px),
-    linear-gradient(to bottom, #d0d7de 1px, transparent 1px);
-  background-size: 40px 40px; /* حجم مربعات الشبكة */
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(24,144,255,0.25);
+}
+#tradingChartContainer::before {
+  content: "";
+  position: absolute;
+  width: 250%;
+  height: 250%;
+  background: radial-gradient(circle, rgba(24,144,255,0.08) 15%, transparent 70%);
+  animation: waveMove 10s linear infinite;
+  top: -60%;
+  left: -60%;
+  transform: rotate(30deg);
+}
+.g2-tooltip-list-item-value { font-weight: 700; color: #1890ff; }
+.g2-geom-point { transition: transform 0.4s ease; }
+.g2-geom-point:hover { transform: scale(1.5); fill: #1890ff !important; stroke-width: 3px !important; }
+
+
+.insurance-stats-row { margin-top: 28px; }
+.insurance-stats-card {
+  border-radius: 24px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+  animation: fadeInUp 1.2s ease-in-out;
+}
+.insurance-stats-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+.stat-box.top {
+  width: 900px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stat-box {
+  
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  background: linear-gradient(145deg, #ffffff, #e8f6ff);
+  box-shadow: 0 6px 20px rgba(24,144,255,0.2);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.stat-box:hover {
+  transform: translateY(-10px) scale(1.06);
+  box-shadow: 0 15px 40px rgba(24,144,255,0.28);
+}
+.stat-box.active { border-left: 6px solid #52c41a; }
+.stat-box.inactive { border-left: 6px solid #f5222d; }
+.stat-box.chart { border-left: 6px solid #1890ff; }
+.top-company { display: flex; flex-direction: column; margin-bottom: 10px; }
+.top-company span {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
-/* إذا تريد نقطة مميزة عند hover على النقاط */
-.g2-tooltip-list-item-value {
-  font-weight: 600;
-  color: #1890ff;
-}
-
-/* تحسين شكل نقاط الخط */
-.g2-geom-point {
-  transition: transform 0.3s ease;
-}
-
-.g2-geom-point:hover {
-  transform: scale(1.3);
-  fill: #1890ff !important;
-  stroke-width: 3px !important;
-}
-
-/* خطوط الشبكة الداخلية (من داخل الرسم) */
-g.grid-line line {
-  stroke: #d0d7de;
-  stroke-dasharray: 3 3;
-}
-
-/* محور الرسم */
-g.axis-line line {
-  stroke: #1890ff;
-  stroke-width: 2;
-}
+/* ---- Animations ---- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { transform: translateY(25px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes waveMove { 0% { transform: rotate(30deg) translateX(0); } 100% { transform: rotate(30deg) translateX(300px); } }

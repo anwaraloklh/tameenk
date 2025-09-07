@@ -1,43 +1,47 @@
 import { Component } from '@angular/core';
+import { AddCompanyService } from '../../services/AddCompanyService';
 
 @Component({
   selector: 'app-company-performance',
-
   templateUrl: './company-performance.component.html',
-  styleUrl: './company-performance.component.less'
+  styleUrls: ['./company-performance.component.less']
 })
 export class CompanyPerformanceComponent {
-  companies = [
-    { name: 'شركة الأمان', orders: 1200, customerSatisfaction: 88, performanceRating: 'Excellent', notes: 'رائدة السوق' },
-    { name: 'شركة الوفاء', orders: 900, customerSatisfaction: 82, performanceRating: 'Good', notes: 'تحسن مستمر' },
-    { name: 'شركة السلام', orders: 750, customerSatisfaction: 78, performanceRating: 'Average', notes: 'تحديات في التسويق' },
-    { name: 'شركة الرؤية', orders: 600, customerSatisfaction: 85, performanceRating: 'Good', notes: 'خدمة عملاء ممتازة' },
-    { name: 'شركة النجاح', orders: 450, customerSatisfaction: 80, performanceRating: 'Average', notes: 'حاجة لتحسين الجودة' }
-  ];
-
-  totalCompanies = this.companies.length;
+  companies: any[] = [];
+  totalCompanies = 0;
+  topCompany: any = { name: '' };
   averageSatisfaction = 0;
-  topCompany = this.companies[0];
 
-  pieChartGradient = '';
+  constructor(private companyService: AddCompanyService) {}
 
   ngOnInit(): void {
-    this.calculateAverageSatisfaction();
-    this.determineTopCompany();
-    this.updatePieChart();
-  }
+    this.companyService.getAllCompanies().subscribe(res => {
+      if (res && Array.isArray(res)) {
+        this.companies = res.map((company: any) => ({
+          name: company.name,
+    
+          customerSatisfaction: company.user_rate || 0,
+          performanceRating: company.average_rate || 0, 
+          notes: company.bio || 'No notes'
+        }));
 
-  calculateAverageSatisfaction(): void {
-    const total = this.companies.reduce((sum, c) => sum + c.customerSatisfaction, 0);
-    this.averageSatisfaction = Math.round(total / this.totalCompanies);
-  }
 
-  determineTopCompany(): void {
-    this.topCompany = this.companies.reduce((prev, current) => (prev.orders > current.orders) ? prev : current);
-  }
+        this.companies.sort((a, b) => b.performanceRating - a.performanceRating);
 
-  updatePieChart(): void {
-    const degree = (this.averageSatisfaction / 100) * 360;
-    this.pieChartGradient = `conic-gradient(#4caf50 0deg ${degree}deg, #ddd ${degree}deg 360deg)`;
+     
+        this.totalCompanies = this.companies.length;
+
+
+        this.topCompany = this.companies[0] || { name: '' };
+
+ 
+        this.averageSatisfaction = this.totalCompanies > 0 ? 
+          Math.round(
+            this.companies.reduce((sum, c) => sum + (c.customerSatisfaction || 0), 0) / this.totalCompanies
+          ) : 0;
+      }
+    }, err => {
+      console.error('Error loading companies', err);
+    });
   }
 }

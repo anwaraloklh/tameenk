@@ -8,15 +8,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.less']
 })
 export class WelcomeComponent implements OnInit {
- 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
- 
+  ngOnInit() {
+    const logoContainer = document.getElementById('logoContainer');
+    const bigLogo = document.getElementById('bigLogo');
+    const welcomeEl = document.getElementById('welcome');
+
+    
     setTimeout(() => {
-     
+      if (logoContainer) logoContainer.classList.add('hide');
+      if (bigLogo) bigLogo.classList.add('show');
+    }, 3000);
+
+    setTimeout(() => {
+      if (welcomeEl) welcomeEl.classList.add('fade-out');
+    }, 6000);
+
+  
+    setTimeout(() => {
       this.router.navigate(['/auth/login']);
     }, 8000);
-
-}
+  }
 }

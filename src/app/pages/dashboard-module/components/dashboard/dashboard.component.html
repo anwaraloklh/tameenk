@@ -1,11 +1,10 @@
 <nz-layout>
-  <nz-header>
+  <nz-header class="fixed-header">
     <ul style="width: 100%;" nz-menu nzTheme="light" nzMode="horizontal" class="header-menu">
       <li nz-menu-item nzSelected class="logo">
         <span class="logo-text">تأمينك</span>
-    </li>
-  
-   
+      </li>
+
       <li nz-menu-item class="search-item">
         <nz-input-group [nzSuffix]="suffixIcon" class="search-input-group">
           <input type="text" nz-input placeholder="ابحث هنا..." />
@@ -14,106 +13,105 @@
           <i nz-icon nzType="search"></i>
         </ng-template>
       </li>
-      <li nz-menu-item class="header-icon-item notification-wrapper" [routerLink]="['../','ui','notification']" >
+
+
+      <li nz-menu-item class="header-icon-item notification-wrapper" [routerLink]="['../','ui','notification']">
         <a nz-dropdown nzPlacement="bottomRight">
           <nz-badge [nzCount]="5" [nzOverflowCount]="9">
             <i nz-icon nzType="bell" nzTheme="outline" class="bell-icon"></i>
           </nz-badge>
         </a>
-      
-      
       </li>
-      
-  
-      <li nz-menu-item class="header-icon-item" nz-tooltip="setting"[routerLink]="['../','ui','setting']" >
-          <i nz-icon nzType="setting" nzTheme="outline" class="bell-icon"></i>
+
+      <li nz-menu-item class="header-icon-item" nz-tooltip="setting" [routerLink]="['../','ui','setting']">
+        <i nz-icon nzType="setting" nzTheme="outline" class="bell-icon"></i>
       </li>
 
       <li nz-menu-item class="header-icon-item" nz-tooltip="logout">
-        <i (click)="confirmLogout()"  nz-icon nzType="logout" nzTheme="outline" class="bell-icon"></i>
-    </li>
-    
-
-      
+        <i (click)="confirmLogout()" nz-icon nzType="logout" nzTheme="outline" class="bell-icon"></i>
+      </li>
     </ul>
   </nz-header>
-  
+
   <nz-layout>
-    <div class="sider-toggle-button" (click)="isSidebarVisible = !isSidebarVisible">
-      <i nz-icon [nzType]="isSidebarVisible ? 'menu-fold' : 'menu-unfold'"></i>
+    <div
+      class="sider-toggle-button"
+      (click)="isCollapsed = !isCollapsed"
+      [style.left]="isCollapsed ? '80px' : '200px'">
+      <i nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
     </div>
 
-   
     <nz-sider
-      *ngIf="isSidebarVisible"
-      nzWidth="200"
-      nzTheme="light"
-      class="custom-sider"
-    >
+      [nzCollapsible]="true"
+      [nzCollapsed]="isCollapsed"
+      [nzTrigger]="null"
+      class="custom-sider fixed-sider"
+      nzTheme="light">
 
-    <ul nz-menu nzTheme="light" nzMode="inline" >
-
-
+      <ul nz-menu nzTheme="light" nzMode="inline">
         <li nz-menu-item [routerLink]="['../','ui','home']" nzMatchRouter>
           <i nz-icon nzType="home" class="menu-icon"></i>
-          <span>Home</span>
+          <span *ngIf="!isCollapsed">Home</span>
         </li>
-        
+
         <li nz-menu-item [routerLink]="['../','ui','add-companeis']" nzMatchRouter>
-          <i nz-icon nzType="user" class="menu-icon"></i>
-          <span>Companies</span>
+          <i nz-icon nzType="cluster" class="menu-icon"></i>
+      
+          <span *ngIf="!isCollapsed">Companies</span>
         </li>
-        
+
         <li nz-menu-item [routerLink]="['../','ui','event-categories']" nzMatchRouter>
           <i nz-icon nzType="deployment-unit" class="menu-icon"></i>
-          <span>Categories</span>
+          <span *ngIf="!isCollapsed">Categories</span>
         </li>
-        
-        <li nz-menu-item [routerLink]="['../','ui','account-management']" nzMatchRouter>
+
+        <!-- <li nz-menu-item [routerLink]="['../','ui','account-management']" nzMatchRouter>
           <i nz-icon nzType="appstore" class="menu-icon"></i>
-          <span>Review Management</span>
+          <span *ngIf="!isCollapsed">Review Management</span>
+        </li> -->
+
+     ء
+
+        <!-- <li nz-menu-item [routerLink]="['../','ui','insurance-analytics']" nzMatchRouter>
+          <i nz-icon nzType="bar-chart" class="menu-icon"></i>
+          <span *ngIf="!isCollapsed">Insurance Analytics</span>
+        </li> -->
+
+        <li nz-menu-item [routerLink]="['../','ui','company-performance']" nzMatchRouter>
+          <i nz-icon nzType="line-chart" class="menu-icon"></i>
+          <span *ngIf="!isCollapsed">Company Performance</span>
         </li>
-        
+
+        <li nz-menu-item [routerLink]="['../','ui','usage-stats']" nzMatchRouter>
+          <i nz-icon nzType="team" class="menu-icon"></i>
+          <span *ngIf="!isCollapsed">Usage Statistics</span>
+        </li>
+
+        <li nz-menu-item [routerLink]="['../','ui','ads-manager']" nzMatchRouter>
+          <i nz-icon nzType="sound" class="menu-icon"></i>
+          <span *ngIf="!isCollapsed">Paid Ads Manager</span>
+        </li>
+
         <li nz-menu-item [routerLink]="['../','ui','info-center']" nzMatchRouter>
           <i nz-icon nzType="read" class="menu-icon"></i>
-          <span>Information Center</span>
+          <span *ngIf="!isCollapsed">Information Center</span>
         </li>
-        
-        <li nz-menu-item [routerLink]="['../','ui','insurance-analytics']" nzMatchRouter>
-          <i nz-icon nzType="bar-chart" class="menu-icon"></i>
-          <span>Insurance Analytics</span>
-        </li>
-        
-        <li nz-menu-item [routerLink]="['../','ui','company-performance']" nzMatchRouter>
-          <i nz-icon nzType="team" class="menu-icon"></i>
-          <span>Company Performance</span>
-        </li>
-        
-        <li nz-menu-item [routerLink]="['../','ui','usage-stats']" nzMatchRouter>
-          <i nz-icon nzType="line-chart" class="menu-icon"></i>
-          <span>Usage Statistics</span>
-        </li>
-        
-        <li nz-menu-item [routerLink]="['../','ui','ads-manager']" nzMatchRouter>
-          <i nz-icon nzType="dollar" class="menu-icon"></i>
-          <span>Paid Ads Manager</span>
-        </li>
-        
+
         <li nz-menu-item [routerLink]="['../','ui','payment-Management']" nzMatchRouter>
           <i nz-icon nzType="dollar" class="menu-icon"></i>
-          <span>Payment Management</span>
+          <span *ngIf="!isCollapsed">Payment Management</span>
         </li>
-        
-        
-
       </ul>
+      <div >
+        <img src="assets/images/logos/logoauth.png" alt="App Logo" class="sidebar-logo" />
+      
+      </div>
     </nz-sider>
+
     <nz-layout class="inner-layout">
-   
-      <nz-content>
-        
+      <nz-content class="content-area">
         <router-outlet></router-outlet>
       </nz-content>
     </nz-layout>
   </nz-layout>
- 
+</nz-layout>

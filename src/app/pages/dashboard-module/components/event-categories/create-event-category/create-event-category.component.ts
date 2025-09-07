@@ -11,9 +11,23 @@ import { EventCategoryService } from '../../../services/event-category.service';
 export class CreateEventCategoryComponent {
   validateForm: FormGroup<{
     title: FormControl<string>;
-    imageUrl: FormControl<string>;
+  
   }>;
+  imagePreviewUrl: string | null = null;
+  selectedImageFile: File | null = null;
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImageFile = file;
 
+      
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreviewUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
   constructor(
     private fb: NonNullableFormBuilder,
     private eventCategoryService: EventCategoryService,
@@ -21,29 +35,32 @@ export class CreateEventCategoryComponent {
   ) {
     this.validateForm = this.fb.group({
       title: this.fb.control('', Validators.required),
-      imageUrl: this.fb.control('', Validators.required),
+    
     });
   }
 
+ 
+ 
   submitForm(): void {
-    if (this.validateForm.valid) {
+    if (this.validateForm.valid && this.selectedImageFile) {
       const formData = new FormData();
-      formData.append('title', this.validateForm.value.title!);
-      formData.append('image', this.validateForm.value.imageUrl!); 
 
+      
+      Object.keys(this.validateForm.controls).forEach(key => {
+        formData.append(key, this.validateForm.get(key)!.value);
+      });
+
+      
+      formData.append('image', this.selectedImageFile);
+
+      
       this.eventCategoryService.createCategory(formData).subscribe({
-        next: () => {
+        next: (res) => {
+          console.log('Updated successfully', res);
           this.modalRef.close(true);
         },
-        error: (error) => {
-          console.error('Create category failed', error);
-        }
-      });
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
+        error: (err) => {
+          console.error('Error updating company', err);
         }
       });
     }

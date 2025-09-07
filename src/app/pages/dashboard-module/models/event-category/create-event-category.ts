@@ -1,4 +1,4 @@
 export interface CreateEventCategory {
-    name:string;
-    description:string;
+    title: string;
+    image: File;
 }

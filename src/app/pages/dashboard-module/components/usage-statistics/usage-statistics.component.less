@@ -1,47 +1,197 @@
 .usage-stats-container {
-    padding: 24px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .usage-stats-container h2 {
-    color: #1890ff;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-  
-  .stats-summary {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 24px;
-    justify-content: space-between;
-  }
-  
-  .stat-item {
-    background: #f0f5ff;
-    border: 1px solid #91d5ff;
-    border-radius: 8px;
-    padding: 16px 24px;
-    flex: 1;
-    text-align: center;
-  }
-  
-  .stat-item h3 {
-    margin-bottom: 8px;
-    color: #096dd9;
-    font-weight: 600;
-  }
-  
-  .stat-item p {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #003a8c;
-  }
-  
-  nz-table {
-    width: 100%;
-  }
-  
-  
+  padding: 24px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.usage-stats-container h2 {
+  color: #1a73e8;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+  animation: slideDown 0.8s ease-in-out;
+}
+
+.stats-summary {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  background: #f0f4ff;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px 3px rgba(26, 115, 232, 0.4);
+  text-align: center;
+  flex: 1;
+  min-width: 180px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-item:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 25px 6px rgba(26, 115, 232, 0.6);
+}
+
+.stat-item h3 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+.stat-item p {
+  font-size: 26px;
+  font-weight: bold;
+  color: #444;
+}
+
+nz-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  animation: fadeIn 1.2s ease-in-out;
+  overflow-x: auto;
+}
+
+/* تثبيت رأس الجدول */
+nz-table ::ng-deep .ant-table-scroll .ant-table-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+}
+
+/* تثبيت أول عمود */
+nz-table ::ng-deep .ant-table-body table tr td:first-child,
+nz-table ::ng-deep .ant-table-header table tr th:first-child {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 5;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* منع تمدد النص داخل الخلايا */
+nz-table ::ng-deep .ant-table-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  vertical-align: middle;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.page-container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.site-page-header {
+  background: linear-gradient(90deg, #1890ff, #40a9ff);
+  color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  animation: fadeSlideDown 0.6s ease-out;
+}
+.site-page-header .ant-page-header-heading-title,
+.site-page-header .ant-page-header-heading-sub-title {
+  color: white !important;
+}
+@keyframes fadeSlideDown {
+  0% { opacity: 0; transform: translateY(-15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* تصميم الجدول */
+.company-table {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* تخصيص الجدول */
+.company-table ::ng-deep table {
+  table-layout: fixed !important;
+  width: 100%;
+  height: 100%;
+}
+
+.company-table ::ng-deep th, 
+.company-table ::ng-deep td {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  vertical-align: middle;
+  background: #f9f9f9;
+  transition: background 0.3s;
+}
+
+.company-table ::ng-deep th {
+  background: #e6f7ff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+
+.company-table ::ng-deep tr:hover td {
+  background: #f0f5ff;
+}
+
+
+.company-table ::ng-deep th:nth-child(1), 
+.company-table ::ng-deep td:nth-child(1) { width: 80px; }  
+.company-table ::ng-deep th:nth-child(2), 
+.company-table ::ng-deep td:nth-child(2) { width: 120px; } 
+.company-table ::ng-deep th:nth-child(3), 
+.company-table ::ng-deep td:nth-child(3) { width: 160px; }  
+.company-table ::ng-deep th:nth-child(4), 
+.company-table ::ng-deep td:nth-child(4) { width: 110px; }  
+.company-table ::ng-deep th:nth-child(5), 
+.company-table ::ng-deep td:nth-child(5) { width: 160px; }  
+.company-table ::ng-deep th:nth-child(6), 
+.company-table ::ng-deep td:nth-child(6) { width: 140px; }  
+.company-table ::ng-deep th:nth-child(7), 
+.company-table ::ng-deep td:nth-child(7) { width: 160px; }  
+.company-table ::ng-deep th:nth-child(8), 
+.company-table ::ng-deep td:nth-child(8) { width: 80px; text-align: center; } 
+
+/* نص الخلايا */
+.company-table ::ng-deep td > span,
+.company-table ::ng-deep td > div {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

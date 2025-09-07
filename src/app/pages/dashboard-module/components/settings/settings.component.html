@@ -1,27 +1,74 @@
-<div class="page-container">
-  <div class="theme-settings-panel">
-    <span class="panel-icon">
-      <i nz-icon nzType="skin" nzTheme="outline"></i>
-    </span>
-    <h2 class="panel-title">Appearance Settings</h2>
-    <p class="panel-description">
-      Choose between light and dark themes for the application.
-    </p>
+<div class="settings-container">
+  <h1 class="settings-title">Application Settings</h1>
 
-    <div class="custom-toggle-wrapper">
+  <!-- Theme -->
+  <div class="setting-row">
+    <label>Theme</label>
+    <div class="toggle-wrapper">
       <input 
         type="checkbox" 
         id="theme-toggle" 
-        class="toggle-checkbox"
         [checked]="isDarkMode"
         (change)="toggleTheme()">
-
       <label for="theme-toggle" class="toggle-label">
         <i nz-icon nzType="sun" class="icon sun-icon"></i>
         <i nz-icon nzType="moon" class="icon moon-icon"></i>
-
         <span class="toggle-ball"></span>
       </label>
     </div>
+  </div>
+
+  <!-- Language -->
+  <div class="setting-row">
+    <label>Language</label>
+    <select [(ngModel)]="selectedLanguage" (change)="changeLanguage()">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="fr">Français</option>
+    </select>
+  </div>
+
+  <!-- Font Size -->
+  <div class="setting-row">
+    <label>Font Size</label>
+    <select [(ngModel)]="fontSize" (change)="updateFontSize()">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+  </div>
+
+  <!-- Notifications -->
+  <div class="setting-row">
+    <label>Notifications</label>
+    <div class="toggle-wrapper">
+      <input 
+        type="checkbox" 
+        id="notifications-toggle"
+        [(ngModel)]="notificationsEnabled"
+        (change)="toggleNotifications()">
+  
+      <label for="notifications-toggle" class="toggle-label">
+        <i nz-icon nzType="bell" class="icon bell-on"></i>
+        <i nz-icon nzType="bell-off" class="icon bell-off"></i>
+        <span class="toggle-ball"></span>
+      </label>
     </div>
+  </div>
+  
+ 
+  <div class="setting-row">
+    <label>Dashboard Layout</label>
+    <select [(ngModel)]="dashboardLayout" (change)="updateLayout()">
+      <option value="grid">Grid</option>
+      <option value="list">List</option>
+      <option value="compact">Compact</option>
+    </select>
+  </div>
+
+ 
+  <div class="setting-row">
+    <label>Accent Color</label>
+    <input type="color" [(ngModel)]="accentColor" (change)="updateAccent()">
+  </div>
 </div>

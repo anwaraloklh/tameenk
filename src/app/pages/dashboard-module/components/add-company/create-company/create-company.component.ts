@@ -20,10 +20,11 @@ export class CreateCompanyComponent {
     phone_number: FormControl<string>;
     address: FormControl<string>;
     license_number: FormControl<string>;
-    image: FormControl<string>;
+    
     bio: FormControl<string>;
   }>;
-
+  imagePreviewUrl: string | null = null;
+  selectedImageFile: File | null = null;
   constructor(
     private fb: NonNullableFormBuilder,
     private addCompanyService: AddCompanyService,
@@ -37,41 +38,51 @@ export class CreateCompanyComponent {
       phone_number: this.fb.control('', Validators.required),
       address: this.fb.control('', Validators.required),
       license_number: this.fb.control('', Validators.required),
-      image: this.fb.control('', Validators.required),
+     
       bio: this.fb.control('')
     });
   }
 
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImageFile = file;
+
+    
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreviewUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+ 
   submitForm(): void {
-    if (this.validateForm.valid) {
+    if (this.validateForm.valid && this.selectedImageFile) {
       const formData = new FormData();
-      const values = this.validateForm.value;
-  
-      formData.append('name', values.name!);
-      formData.append('email', values.email!);
-      formData.append('password', values.password!);
-      formData.append('password_confirmation', values.password_confirmation!);
-      formData.append('phone_number', values.phone_number!);
-      formData.append('address', values.address!);
-      formData.append('license_number', values.license_number!);
-      formData.append('bio', values.bio ?? '');
-      formData.append('image', values.image!); 
-  
-      this.addCompanyService.createCompany(formData).subscribe({
-        next: () => this.modalRef.close(true),
-        error: (error) => console.error('Create company failed', error)
+
+      
+      Object.keys(this.validateForm.controls).forEach(key => {
+        formData.append(key, this.validateForm.get(key)!.value);
       });
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
+
+      
+      formData.append('image', this.selectedImageFile);
+
+      
+      this.addCompanyService.createCompany(formData).subscribe({
+        next: (res) => {
+          console.log('Updated successfully', res);
+          this.modalRef.close(true);
+        },
+        error: (err) => {
+          console.error('Error updating company', err);
         }
       });
     }
   }
-  
-  
 
   close(): void {
     this.modalRef.close();

@@ -26,9 +26,18 @@ export class AddCompanyComponent implements OnInit {
     this.companyService.getAllCompanies().subscribe({
 
       next: (res) => {
+        this.dataSet = res.map((ad: AddCompaniesList) => {
+        
+          return {
+            ...ad,
+            image: ad.image ? `https://taaminak.tahamove.com/storage/${ad.image}` : ''
+          };
+        });
         this.loading = false;
-        this.dataSet = res;
+      
       },
+      
+
       error: () => {
         this.loading = false;
         console.error('Failed to load companies');

@@ -40,7 +40,7 @@
       </tbody>
     </nz-table>
   
-    <!-- Modal لإضافة/تعديل مقال -->
+
     <nz-modal [(nzVisible)]="isModalVisible" nzTitle="{{ isEditing ? 'تعديل مقال' : 'إضافة مقال' }}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
       <form nz-form [formGroup]="articleForm">
         <nz-form-item>

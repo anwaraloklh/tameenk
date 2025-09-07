@@ -1,0 +1,15 @@
+<div style="text-align: center;">
+    <img [src]="imagePreviewUrl" alt="Ad Image" style="max-width: 100%; height: auto; margin-bottom: 15px;" />
+  
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  
+    <div style="margin-top: 20px;">
+      <button nz-button nzType="primary" (click)="updateImage()" [disabled]="!selectedImageFile">
+        Update Image
+      </button>
+      <button nz-button nzType="default" (click)="cancel()" style="margin-left: 10px;">
+        Cancel
+      </button>
+    </div>
+  </div>
+  

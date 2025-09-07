@@ -1,47 +1,78 @@
 <div class="usage-stats-container">
-    <h2>Usage Statistics</h2>
-  
-    <div class="stats-summary">
-      <div class="stat-item">
-        <h3>Total Users</h3>
-        <p>{{ totalUsers }}</p>
-      </div>
-      <div class="stat-item">
-        <h3>Active Sessions</h3>
-        <p>{{ activeSessions }}</p>
-      </div>
-      <div class="stat-item">
-        <h3>Average Session Duration (min)</h3>
-        <p>{{ avgSessionDuration }}</p>
-      </div>
+  <h2>Usage Statistics</h2>
+
+  <div class="stats-summary">
+    <div class="stat-item">
+      <h3>Total Users</h3>
+      <p>{{ totalUsers }}</p>
     </div>
-  
-    <nz-table
-      [nzData]="usageData"
-      [nzFrontPagination]="true"
-      [nzPageSize]="7"
-      [nzScroll]="{ x: '700px' }"
-      nzShowPagination
-      nzSize="middle"
-    >
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Login Count</th>
-          <th>Last Login</th>
-          <th>Pages Visited</th>
-          <th>Average Time (min)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of usageData">
-          <td>{{ item.user }}</td>
-          <td>{{ item.loginCount }}</td>
-          <td>{{ item.lastLogin | date:'medium' }}</td>
-          <td>{{ item.pagesVisited }}</td>
-          <td>{{ item.avgTime }}</td>
-        </tr>
-      </tbody>
-    </nz-table>
+    <div class="stat-item">
+      <h3>Active Sessions</h3>
+      <p>{{ activeSessions }}</p>
+    </div>
+    <div class="stat-item">
+      <h3>Average Session Duration (min)</h3>
+      <p>{{ avgSessionDuration }}</p>
+    </div>
   </div>
-  
+
+  <nz-table
+    [nzData]="usageData"
+    [nzFrontPagination]="true"
+    [nzPageSize]="7"
+    [nzScroll]="{ x: '1100px' }"
+    nzShowPagination
+    nzSize="middle"
+    class="custom-table"
+  >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Email Verified</th>
+        <th>Status</th>
+        <th class="action-col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usageData">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone_number }}</td>
+        <td>
+          <nz-tag [nzColor]="user.email_verified_at ? 'green' : 'red'">
+            {{ user.email_verified_at ? 'Verified' : 'Not Verified' }}
+          </nz-tag>
+        </td>
+        <td>
+          <nz-tag [nzColor]="user.blocked ? 'red' : 'green'">
+            {{ user.blocked ? 'Blocked' : 'Active' }}
+          </nz-tag>
+        </td>
+        <td class="action-buttons">
+          <button
+            nz-button
+            nzType="default"
+            nzSize="small"
+            [nzDanger]="!user.blocked"
+            (click)="toggleBlock(user)"
+          >
+            {{ user.blocked ? 'Unblock' : 'Block' }}
+          </button>
+           || 
+          <button
+          nz-button
+          nzType="default"
+          nzSize="small"
+            (click)="openNotificationModal(user)"
+          >
+            Notify
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+
